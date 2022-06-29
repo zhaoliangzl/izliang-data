@@ -7,7 +7,7 @@
     "distDir": "Set automatically by Vue CLI plugin"
   },
   "package": {
-    "productName": "阿亮数据转换器",
+    "productName": "izliang-data",
     "version": "0.1.1"
   },
   "tauri": {
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "阿亮数据转换器",
+        "title": "izliang-data",
         "width": 800
       }
     ]
