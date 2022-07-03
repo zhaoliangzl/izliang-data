@@ -40,24 +40,24 @@ jobs:
   # 编译 Tauri
   build-tauri:
     needs: create-release
+    runs-on: ${{ matrix.platform }}
     strategy:
       fail-fast: false
-      matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
-        include:
-          - platform: 
-            buildFolder: bundle/deb
-            ext: amd64.deb
-            compressed: ''
-          - platform: macos-latest
-            buildFolder: bundle/dmg
-            ext: .dmg
-            compressed: .tgz
-          - platform: windows-latest
-            buildFolder: ''
-            ext: .msi
-            compressed: ''
-    runs-on: ${{ matrix.platform }}
+        matrix:
+          platform: [macos-latest, ubuntu-latest, windows-latest]
+          include:
+            - platform: 
+              buildFolder: bundle/deb
+              ext: amd64.deb
+              compressed: ''
+            - platform: macos-latest
+              buildFolder: bundle/dmg
+              ext: .dmg
+              compressed: .tgz
+            - platform: windows-latest
+              buildFolder: ''
+              ext: .msi
+              compressed: ''
     steps:
       - uses: actions/checkout@v2
 
