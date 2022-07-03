@@ -33,10 +33,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: '${{ steps.get_version.outputs.VERSION }}'
+          tag_name: 'app-${{ steps.get_version.outputs.VERSION }}'
           release_name: 'app ${{ steps.get_version.outputs.VERSION }}'
           body: 'See the assets to download this version and install.'
-  
+          draft: true
+          prerelease: false
   # 编译 Tauri
   build-tauri:
     needs: create-release
@@ -44,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [, macos-latest, ubuntu-latest, windows-latest]
         include:
           - platform: 
             buildFolder: bundle/deb
@@ -60,8 +61,7 @@ jobs:
             compressed: ''
     steps:
       - uses: actions/checkout@v2
-
-     # 安装 Node.js
+      # 安装 Node.js
       - name: Setup node
         uses: actions/setup-node@v1
         with:
